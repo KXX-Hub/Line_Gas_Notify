@@ -1,3 +1,4 @@
+import json
 import time
 from etherscan import Etherscan
 import requests
@@ -6,41 +7,34 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import utilities as utils
+from web3 import Web3, HTTPProvider
+from web3.middleware import geth_poa_middleware
 
 config = utils.read_config()
 driver = webdriver.Chrome()
 eth = Etherscan(config.get('ether_api_key'))
 wallet_address = config.get('wallet_address')
+enter_gwei = config.get('enter_gwei')
+gas_oracle = eth.get_gas_oracle()
+safe_gas = gas_oracle["SafeGasPrice"]
+proposed_gas = gas_oracle["ProposeGasPrice"]
+fast_gas = gas_oracle["FastGasPrice"]
+suggest_base_fee = gas_oracle["suggestBaseFee"]
 
 
-def driver_send_keys_xpath(locator, key):
-    """Send keys to element.
-    :param locator: Locator of element.
-    :param key: Keys to send.
-    """
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, locator))).send_keys(key)
-
-
-def driver_click_xpath(locator):
-    """Click element.
-    :param locator: Locator of element.
-    """
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, locator))).click()
-
-
-def driver_click(locator):
-    """Click element.
-    :param locator: Locator of element.
-    """
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located(locator)).click()
-
-
-def now_gas():
-    print('hi')
+def gas_info():
+    safe_message = "Safe : " + safe_gas + " gwei"
+    proposed_gas_message = "Proposed : " + proposed_gas + " gwei"
+    fast_gas_message = "Fast : " + fast_gas + " gwei"
+    suggest_message = "Suggest base fee : " + suggest_base_fee + " gwei"
+    print("-----------------------")
+    print(safe_message)
+    print(proposed_gas_message)
+    print(fast_gas_message)
+    print(suggest_message)
+    print("-----------------------")
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    now_gas()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    gas_info()

@@ -41,7 +41,7 @@ def read_config():
         with open('config.yml', 'r', encoding="utf8") as f:
             data = yaml.load(f, Loader=SafeLoader)
             config = {
-                'ether_api_key': data['ether_api_key'],
+                'wallet_address': data['wallet_address'],
                 'ether_api_key': data['ether_api_key'],
                 'enter_gwei': data['enter_gwei']
             }
@@ -51,3 +51,4 @@ def read_config():
             "An error occurred while reading config.yml, please check if the file is corrected filled.\n"
             "If the problem can't be solved, consider delete config.yml and restart the program.\n")
         sys.exit()
+
