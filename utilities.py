@@ -1,6 +1,7 @@
 """This python will handle some extra functions."""
 import sys
 from os.path import exists
+
 import yaml
 from yaml import SafeLoader
 
@@ -20,6 +21,9 @@ wallet_address : ''
 #-------------------------------------
 # 輸入你希望的gas值(Gwei)
 enter_gwei : ''
+#-------------------------------------
+# 輸入你的line_channel
+line_notify_token: ''
 #-------------------------------------
 """
                 )
@@ -43,7 +47,8 @@ def read_config():
             config = {
                 'wallet_address': data['wallet_address'],
                 'ether_api_key': data['ether_api_key'],
-                'enter_gwei': data['enter_gwei']
+                'enter_gwei': data['enter_gwei'],
+                'line_notify_token': data['line_notify_token']
             }
             return config
     except (KeyError, TypeError):
@@ -51,4 +56,3 @@ def read_config():
             "An error occurred while reading config.yml, please check if the file is corrected filled.\n"
             "If the problem can't be solved, consider delete config.yml and restart the program.\n")
         sys.exit()
-
