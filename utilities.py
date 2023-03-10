@@ -16,9 +16,6 @@ def config_file_generator():
 # 輸入你的Etherscan api key :          
 ether_api_key : ''
 #-------------------------------------
-# 輸入你的錢包地址 :
-wallet_address : ''
-#-------------------------------------
 # 輸入你希望的gas值(Gwei)
 enter_gwei : ''
 #-------------------------------------
@@ -45,7 +42,6 @@ def read_config():
         with open('config.yml', 'r', encoding="utf8") as f:
             data = yaml.load(f, Loader=SafeLoader)
             config = {
-                'wallet_address': data['wallet_address'],
                 'ether_api_key': data['ether_api_key'],
                 'enter_gwei': data['enter_gwei'],
                 'line_notify_token': data['line_notify_token']
