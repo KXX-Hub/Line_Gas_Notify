@@ -107,7 +107,7 @@ def get_gas_notify():
                       '|Gas is in safe range|\n'
                       '+--------------------+')
                 continue
-        elif float(target_gas) - 1 >= float(suggest_base_fee)-3:
+        elif float(target_gas) - 3 >= float(suggest_base_fee):
             if time_counter.get('prefect_msg') == 1:
                 print('Skip (prefect)')
                 time.sleep(3)
