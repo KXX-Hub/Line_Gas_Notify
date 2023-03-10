@@ -17,9 +17,9 @@ def config_file_generator():
 ether_api_key : ''
 #-------------------------------------
 # 輸入你希望的gas值(Gwei)
-enter_gwei : ''
+target_gas : ''
 #-------------------------------------
-# 輸入你的line_channel
+# 輸入你的line_notify_token
 line_notify_token: ''
 #-------------------------------------
 """
@@ -43,7 +43,7 @@ def read_config():
             data = yaml.load(f, Loader=SafeLoader)
             config = {
                 'ether_api_key': data['ether_api_key'],
-                'enter_gwei': data['enter_gwei'],
+                'target_gas': data['target_gas'],
                 'line_notify_token': data['line_notify_token']
             }
             return config
