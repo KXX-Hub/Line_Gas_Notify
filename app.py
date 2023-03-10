@@ -24,6 +24,9 @@ minute_counter = {
 
 
 def get_gas_notify():
+    print("+---------------------------+\n"
+          "|Welcome come to Gas Notify!|\n"
+          "-----------------------------")
     while True:
         gas_oracle = eth.get_gas_oracle()
         safe_gas = gas_oracle["SafeGasPrice"]
@@ -32,6 +35,8 @@ def get_gas_notify():
         suggest_base_fee = gas_oracle["suggestBaseFee"]
         if float(suggest_base_fee) > float(enter_gwei) + 10:
             if minute_counter.get('too_high_gas_msg') == 1:
+                print('Skip (too high)')
+                time.sleep(3)
                 continue
             else:
                 message = "\nGas is too high\n" \
@@ -48,10 +53,15 @@ def get_gas_notify():
                 minute_counter['high_gas_msg'] = 0
                 minute_counter['ok_gas_msg'] = 0
                 minute_counter['prefect_msg'] = 0
+                print('+---------------+\n'
+                      '|Gas is too high|\n'
+                      '+---------------+')
                 time.sleep(5)
                 continue
-        elif float(enter_gwei) + 1 <= float(suggest_base_fee) <= float(enter_gwei)+10:
+        elif float(enter_gwei) + 1 <= float(suggest_base_fee) <= float(enter_gwei) + 10:
             if minute_counter.get('high_gas_msg') == 1:
+                print('Skip (a little bit high)')
+                time.sleep(3)
                 continue
             else:
                 message = "\nGas is high\n" \
@@ -68,11 +78,16 @@ def get_gas_notify():
                 minute_counter['high_gas_msg'] = 1
                 minute_counter['ok_gas_msg'] = 0
                 minute_counter['prefect_msg'] = 0
+                print('+------------------------+\n'
+                      '|Gas is a little bit high|\n'
+                      '+------------------------+')
                 time.sleep(5)
                 continue
 
         elif float(enter_gwei) - 1 <= float(suggest_base_fee) <= float(enter_gwei) + 1:
             if minute_counter.get('ok_gas_msg') == 1:
+                print('Skip (OK)')
+                time.sleep(3)
                 continue
             else:
                 message = "\nGas is ok\n" \
@@ -89,10 +104,15 @@ def get_gas_notify():
                 minute_counter['high_gas_msg'] = 0
                 minute_counter['ok_gas_msg'] = 1
                 minute_counter['prefect_msg'] = 0
+                print('+-----------+\n'
+                      '|Gas is a OK|\n'
+                      '+-----------+')
                 time.sleep(5)
                 continue
-        elif float(enter_gwei)-1 >= float(suggest_base_fee):
+        elif float(enter_gwei) - 1 >= float(suggest_base_fee):
             if minute_counter.get('prefect_msg') == 1:
+                print('Skip (prefect)')
+                time.sleep(3)
                 continue
             else:
                 message = "\nGas is prefect for you!!!\n" \
@@ -109,6 +129,9 @@ def get_gas_notify():
                 minute_counter['high_gas_msg'] = 0
                 minute_counter['ok_gas_msg'] = 0
                 minute_counter['prefect_msg'] = 1
+                print('+----------------+\n'
+                      '|Gas is a prefect|\n'
+                      '+----------------+')
                 time.sleep(5)
                 continue
         else:
