@@ -1,3 +1,2 @@
 requests~=2.28.2
 PyYAML~=6.0
-etherscan-python~=2.1.0
