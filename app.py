@@ -1,3 +1,4 @@
+import json
 import time
 import requests
 import line_notify
@@ -7,7 +8,7 @@ config = utils.read_config()
 wallet_address = config.get('wallet_address')
 target_gas = config.get('target_gas')
 token = config.get("line_notify_token")
-
+ether_api_key = config.get('ether_api_key')
 
 time_counter = {
     'too_high_gas_msg': 0,
@@ -18,19 +19,18 @@ time_counter = {
 
 
 def get_gas_notify():
-    url = "https://api.etherscan.io/api?module=gastracker&action=gasoracle"
-    response = requests.get(url)
     print("+---------------------------+\n"
           "|Welcome come to Gas Notify!|\n"
           "-----------------------------")
     while True:
-        data = response.json()
-        safe_gas = int(data['result']['SafeGasPrice'])
-        proposed_gas = int(data['result']['ProposeGasPrice'])
-        fast_gas = int(data['result']['FastGasPrice'])
-        base_fee = proposed_gas
-        suggest_gas = base_fee + proposed_gas
-        if float(suggest_gas) > float(target_gas) + 10:
+        url = f'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey={ether_api_key}'
+        response = requests.get(url)
+        data = json.loads(response.text)
+        result = data['result']
+        safe_gas = result['SafeGasPrice']
+        proposed_gas = result['ProposeGasPrice']
+        fast_gas = result['FastGasPrice']
+        if float(safe_gas) > float(target_gas) + 10:
             if time_counter.get('too_high_gas_msg') == 1:
                 print('Skip (too high)')
                 time.sleep(3)
@@ -43,7 +43,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Gas : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas : {safe_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)
@@ -55,7 +55,7 @@ def get_gas_notify():
                       '|Gas is too high|\n'
                       '+---------------+')
                 continue
-        elif float(target_gas) + 3 <= float(suggest_gas) <= float(target_gas) + 10:
+        elif float(target_gas) + 3 <= float(safe_gas) <= float(target_gas) + 10:
             if time_counter.get('high_gas_msg') == 1:
                 print('Skip (higher)')
                 time.sleep(3)
@@ -68,7 +68,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Gas  : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas  : {safe_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)
@@ -81,7 +81,7 @@ def get_gas_notify():
                       '+------------------------+')
                 continue
 
-        elif float(target_gas) - 3 <= float(suggest_gas) <= float(target_gas) + 3:
+        elif float(target_gas) - 3 <= float(safe_gas) <= float(target_gas) + 3:
             if time_counter.get('ok_gas_msg') == 1:
                 print('Skip (safe)')
                 time.sleep(3)
@@ -94,7 +94,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Gas : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas : {safe_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)
@@ -106,7 +106,7 @@ def get_gas_notify():
                       '|Gas is in safe range|\n'
                       '+--------------------+')
                 continue
-        elif float(target_gas) - 3 >= float(suggest_gas):
+        elif float(target_gas) - 3 >= float(safe_gas):
             if time_counter.get('prefect_msg') == 1:
                 print('Skip (prefect)')
                 time.sleep(3)
@@ -119,7 +119,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Gas : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas : {safe_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)

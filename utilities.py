@@ -40,7 +40,8 @@ def read_config():
             data = yaml.load(f, Loader=SafeLoader)
             config = {
                 'target_gas': data['target_gas'],
-                'line_notify_token': data['line_notify_token']
+                'line_notify_token': data['line_notify_token'],
+                'ether_api_key': data['ether_api_key']
             }
             return config
     except (KeyError, TypeError):
