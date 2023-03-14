@@ -13,9 +13,6 @@ def config_file_generator():
 # | MEI_HSING_Auto_Video             |
 # | Made by KXX (MIT License)        |
 # ++--------------------------------++
-# 輸入你的Etherscan api key :          
-ether_api_key : ''
-#-------------------------------------
 # 輸入你希望的gas值(Gwei)
 target_gas : ''
 #-------------------------------------
@@ -42,7 +39,6 @@ def read_config():
         with open('config.yml', 'r', encoding="utf8") as f:
             data = yaml.load(f, Loader=SafeLoader)
             config = {
-                'ether_api_key': data['ether_api_key'],
                 'target_gas': data['target_gas'],
                 'line_notify_token': data['line_notify_token']
             }
