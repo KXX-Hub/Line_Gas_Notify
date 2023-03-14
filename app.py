@@ -43,7 +43,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Base Fee : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas : {suggest_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)
@@ -68,7 +68,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Base Fee : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas  : {suggest_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)
@@ -94,7 +94,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Base Fee : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas : {suggest_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)
@@ -119,7 +119,7 @@ def get_gas_notify():
                           f"Proposed Gas : {proposed_gas} Gwei\n" \
                           f"Fast Gas : {fast_gas} Gwei\n" \
                           f"----------------------------------\n" \
-                          f"Suggest Base Fee : {suggest_gas} Gwei\n" \
+                          f"Suggest Gas : {suggest_gas} Gwei\n" \
                           f"Your target gas : {target_gas} Gwei\n" \
                           f"----------------------------------"
                 line_notify.send_message(message)
