@@ -35,11 +35,10 @@
   
   2.Run app.py
   
-  3.將Etherscan Api Key 和 Line Notify token填入config.yml
+  3.將Etherscan Api Key 、 Line Notify token填入config.yml 及 自己期望的Gas值(Gwei)填入config.yml
+  (建議下載[notepad++](https://notepad-plus-plus.org/downloads/)或是[VisualStudioCode](https://code.visualstudio.com/download)，沒有的話用記事本也可以)
   
-  4.將自己期望的Gas值(Gwei)填入config.yml
-  
-  5.再執行一次app.py即可運行
+  4.再執行一次app.py即可運行
   
 # 結語
 
