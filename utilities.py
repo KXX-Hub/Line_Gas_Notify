@@ -10,7 +10,7 @@ def config_file_generator():
     """Generate the template of config file"""
     with open('config.yml', 'w', encoding="utf8") as f:
         f.write("""# ++--------------------------------++
-# | MEI_HSING_Auto_Video             |
+# | Ethereum Gas Notify              |
 # | Made by KXX (MIT License)        |
 # ++--------------------------------++
 # 輸入你希望的gas值(Gwei)
