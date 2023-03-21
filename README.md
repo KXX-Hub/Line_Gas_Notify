@@ -1,6 +1,6 @@
 # Ethereum gas Notify（以太坊Gas即時價格通知）
 
- 本專案使用*Etherscan API + Line Notify API*進行以太坊價格通知，使用者填入自己期望的Gas值，即可即時收到Gas變化的通知
+ 本專案使用*Etherscan API + Line Notify API*進行以太坊價格通知，填入自己期望的Gas值，即可即時收到Gas變化通知
  
 <img width="397" alt="截圖 2023-03-17 上午12 26 08" src="https://user-images.githubusercontent.com/72089746/226346912-72d782f5-448a-4983-846e-8f07940005c8.png">
 
@@ -33,7 +33,7 @@
 # 如何使用
   1.下載[Release](https://github.com/KXX-Hub/Line_Gas_Notify/releases/tag/crypto_tools)
   
-  2.Run app.py
+  2.Run 第一次 app.py，系統會自動幫你產生config.yml
   
   3.將Etherscan Api Key 、 Line Notify token填入config.yml 及 自己期望的Gas值(Gwei)填入config.yml
   (建議下載[notepad++](https://notepad-plus-plus.org/downloads/)或是[VisualStudioCode](https://code.visualstudio.com/download)，沒有的話用記事本也可以)
