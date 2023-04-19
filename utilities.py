@@ -19,6 +19,8 @@ target_gas : ''
 # 輸入你的line_notify_token
 line_notify_token: ''
 #-------------------------------------
+# 輸入你的ether_api_key
+ether_api_key: ''
 """
                 )
     sys.exit()
