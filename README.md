@@ -31,7 +31,7 @@
   6.複製權杖(Token)**注意！要立刻馬上複製，權杖只會顯示一次**
 
 # 如何使用
-  1.下載[Release](https://github.com/KXX-Hub/Line_Gas_Notify/releases/tag/crypto_tools)
+  1.下載[Release](https://github.com/KXX-Hub/Line_Gas_Notify/releases/tag/crypto_tools)最新版本
   
   2.Run 第一次 app.py，系統會自動幫你產生config.yml
   
