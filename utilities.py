@@ -17,9 +17,11 @@ def config_file_generator():
 target_gas : ''
 #-------------------------------------
 # 輸入你的line_notify_token
+# 網址：https://notify-bot.line.me/zh_TW/
 line_notify_token: ''
 #-------------------------------------
 # 輸入你的ether_api_key
+# 網址：https://etherscan.io/myapikey
 ether_api_key: ''
 """
                 )
